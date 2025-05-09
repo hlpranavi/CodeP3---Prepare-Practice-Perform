@@ -6,3 +6,6 @@
 - 📊 Progress tracking and performance history  
 - 🌐 Full-stack architecture using Node.js and MongoDB  
 - 🔐 Secure environment with protected routes and API handling  
+
+To run:
+node server.js
