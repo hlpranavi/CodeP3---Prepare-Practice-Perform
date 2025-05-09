@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeP3</title>
+    <!-- Google Fonts for modern typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            height: 100vh;
+            overflow: hidden;
+            scroll-snap-type: y mandatory;
+            background-color: #f5f7f9;
+        }
+
+        /* Main container */
+        .container {
+            height: 100vh;
+            overflow-y: auto;
+            scroll-snap-type: y mandatory;
+            display: flex;
+            flex-direction: column;
+            padding: 0 20px;
+        }
+
+        /* Header with search bar, help button, title image, and dropdown */
+        header {
+            padding: 20px;
+            background-color: #004d6e;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-weight: 600;
+            font-size: 24px;
+            color: #fff;
+        }
+
+        /* Title image style */
+        .title-img {
+    	    width: 90px; /* Adjust width as needed */
+    	    height: 90px; /* Adjust height as needed */
+    	    margin-right: 10px;
+    	    vertical-align: middle;
+}
+
+        /* Search box style */
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Explore button style */
+        .explore-button {
+            padding: 16px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #004d6e;
+            color: #fff;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+            transition: background-color 0.3s ease;
+	    margin-right: 15px;
+        }
+
+        .explore-button:hover {
+            background-color: #4D5E6D;
+        }
+
+        /* FAQ's button style - same as Explore */
+        .help-button {
+            padding: 16px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #004d6e;
+            color: #fff;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+            transition: background-color 0.3s ease;
+            margin-right: 10px;
+        }
+
+        .help-button:hover {
+            background-color: #4D5E6D;
+        }
+
+        /* Profile button styles */
+        .profile-button {
+            position: relative;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .profile-button img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+        }
+
+        /* Dropdown menu styles */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 40px;
+            right: 0;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+            z-index: 1;
+        }
+
+        .dropdown-menu button {
+            display: block;
+            padding: 10px 20px;
+            border: none;
+            background-color: #fff;
+            color: #333;
+            text-align: left;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .dropdown-menu button:hover {
+            background-color: #f5f7f9;
+        }
+
+        /* Top section: Two images side by side */
+        .image-section {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .image-section img {
+            width: 70%;
+            height: 70vh;
+            object-fit: cover;
+            border-radius: 0px;
+        }
+
+        /* Middle section */
+        .middle-section {
+            display: flex;
+            height: auto;
+            flex-wrap: wrap; /* Ensures all subsections are visible */
+        }
+
+        .subsection {
+            width: 21%; /* Adjusted to 25% to fit four subsections */
+            padding: 15px;
+            overflow-y: auto;
+            border-right: 1px solid #ddd;
+            box-sizing: border-box;
+            background-color: #fff;
+            position: relative; /* Needed to allow absolute positioning */
+        }
+
+        .subsection:last-child {
+            border-right: none;
+        }
+
+        /* Ensure checkboxes appear vertically */
+        .subsection label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+	.arrow-img {
+   	width: 20px;
+    	margin-left: 10px;
+    	cursor: pointer;
+    	transition: transform 0.3s ease; /* Optional: Add a smooth transition effect */
+	}
+
+	.arrow-img:hover {
+    	transform: scale(1.1); /* Optional: Scale up the image on hover */
+	}
+
+        .skills-image-container {
+            width: 200px; /* Adjust width as needed */
+            position: relative; /* Relative positioning for child elements */
+            margin-left: 20px; /* Adjust spacing from subsections */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .skills-image {
+            width: 100%; /* Ensure image takes full width of container */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 10px; /* Rounded corners */
+            margin-bottom: 10px; /* Adjust spacing */
+        }
+
+        /* Proceed button style */
+        .proceed-button {
+            background-color: #f56a1e;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+            transition: background-color 0.3s ease;
+        }
+
+        .proceed-button:hover {
+            background-color: #d95c15;
+        }
+
+        /* Proceed container */
+        .proceed-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        /* Bottom section */
+        .text-section {
+            display: flex;
+            height: 100vh;
+        }
+
+        .left,
+        .right {
+            padding: 20px;
+        }
+
+        .left {
+            width: 75%;
+        }
+
+        .right {
+            width: 25%;
+        }
+	.left p {
+    	margin-bottom: 10px; /* Adjust margin as needed */
+	}
+	.left p.underline {
+    	text-decoration: underline;
+	}
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .image-section img {
+                width: 100%;
+                height: auto;
+            }
+
+            .left,
+            .right {
+                width: 100%;
+            }
+
+            .subsection {
+                width: 100%;
+                border-right: none;
+            }
+
+            .proceed-container {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header with title image, help button, and dropdown -->
+        <header>
+            <div class="search-box">
+                <!-- Title image -->
+                <img src="logo.jpg" alt="Title Image" class="title-img" />
+                <!-- Title text -->
+                <h1>CodeP3 - PREPARE PRACTICE PERFORM</h1>
+            </div>
+            <div class="search-box">
+                <!-- Explore button -->
+                <button class="explore-button" onclick="redirectToExplorePage()">
+                    Explore
+                </button>
+                <!-- Help button with icon -->
+                <button class="help-button" onclick="redirectToHelpPage()">
+                    FAQ's
+                </button>
+                <!-- Profile button -->
+                <button class="profile-button" id="profile-button">
+                    <img src="pp.jpg" alt="Profile Picture" />
+                </button>
+
+                <!-- Dropdown menu -->
+                <div class="dropdown-menu" id="dropdown-menu">
+                    <button id="logout-button">Log Out</button> <!-- Updated with id for logout -->
+                </div>
+            </div>
+        </header>
+
+        <!-- Top section: Two images side by side -->
+        <div class="section image-section">
+            <img src="match1.jpg" alt="Image 1" />
+            <img src="match2.jpg" alt="Image 2" />
+        </div>
+
+        <!-- Middle section and proceed container -->
+        <div class="section">
+            <h1>Start Your Preparation...</h1>
+            <!-- Middle section: Divided into three vertical subsections -->
+            <div class="middle-section">
+                <!-- Subsection 1: Topic -->
+                <div class="subsection">
+                    <h2 style="color: #004d6e;">Topic</h2>
+                    <label>
+                        <input type="checkbox" name="Arrays"> Arrays
+                    </label>
+                    <label>
+                        <input type="checkbox" name="Strings"> Strings
+                    </label>
+                    <label>
+                        <input type="checkbox" name="Bit manipulation"> Bit Manipulation
+                    </label>
+                    <label>
+                        <input type="checkbox" name="Dynamic Programming"> Dynamic Programming
+                    </label>
+                    <label>
+                        <input type="checkbox" name="Greedy"> Greedy
+                    </label>
+                    <label>
+                        <input type="checkbox" name="Math"> Math
+                    </label>
+                    <label>
+                        <input type="checkbox" name="Hash Table"> Hash Table
+                    </label>
+                </div>
+
+                <!-- Subsection 2: Difficulty -->
+                <div class="subsection">
+                    <h2 style="color: #004d6e;">Difficulty</h2>
+                    <label>
+                        <input type="checkbox" name="difficulty1"> Easy
+                    </label>
+                    <label>
+                        <input type="checkbox" name="difficulty2"> Medium
+                    </label>
+                    <label>
+                        <input type="checkbox" name="difficulty3"> Hard
+                    </label>
+                </div>
+
+                <!-- Subsection 3: Skills -->
+                <div class="subsection">
+                    <h2 style="color: #004d6e;">Skills</h2>
+                    <label>
+                        <input type="checkbox" name="skills1"> Basic
+                    </label>
+                    <label>
+                        <input type="checkbox" name="skills2"> Intermediate
+                    </label>
+                    <label>
+                        <input type="checkbox" name="skills3"> Advanced
+                    </label>
+                </div>
+                
+                <!-- Subsection 4: Platform -->
+                <div class="subsection">
+                    <h2 style="color: #004d6e;">Platform</h2>
+                    <label>
+                        <input type="checkbox" name="p1"> Leetcode
+                    </label>
+                    <label>
+                        <input type="checkbox" name="p2"> Codechef
+                    </label>
+                    <label>
+                        <input type="checkbox" name="p3"> HackerRank
+                    </label>
+                    <label>
+                        <input type="checkbox" name="p4"> Codeforces
+                    </label>
+                </div>
+
+                <div class="skills-image-container">
+                    <h3 style="color: #004d6e;">Let's get started!!</h3>
+                    <img src="si.jpg" alt="Skills Image" class="skills-image" />
+                </div>
+            </div>
+
+            <!-- Proceed container -->
+            <div class="proceed-container">
+                <button class="proceed-button" onclick="fetchData()">Proceed</button>
+            </div>
+        </div>
+
+        <!-- Bottom section: Split into two parts -->
+<div class="section text-section">
+    <!-- Left part (About Us) -->
+    <div class="left">
+        <h2>About Us</h2>
+        <p>Mastering coding skills is pivotal in today's tech-driven world. Our project seeks to provide a consolidated platform where students can access curated coding questions tailored to their proficiency levels. We offer relevant and progressively challenging questions for beginners and seasoned professionals alike.</p>
+        <p class="underline" style="display: flex; align-items: center;">Know more about us
+            <img src="arr.jpg" alt="More About Us" class="arrow-img" onclick="redirectToKnowMore()">
+        </p>
+    </div>
+
+    <!-- Right part (More Info) -->
+    <div class="right">
+        <h2>More Info</h2>
+        <p>Stay tuned for exciting updates and new features coming soon!</p>
+        <!-- Contact details with phone icon -->
+        <div class="contact-info">
+            <i class="fas fa-phone"></i> Contact Us: +1 234 567 890
+        </div>
+    </div>
+</div>
+
+    <!-- Font Awesome for icons -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <!-- JavaScript to handle dropdown menu, data fetching, and button redirections -->
+    <script>
+        const profileButton = document.getElementById('profile-button');
+        const dropdownMenu = document.getElementById('dropdown-menu');
+        const logoutButton = document.getElementById('logout-button'); // Added reference to logout button
+
+        // Toggle dropdown menu when profile button is clicked
+        profileButton.addEventListener('click', () => {
+            const isVisible = dropdownMenu.style.display === 'block';
+            dropdownMenu.style.display = isVisible ? 'none' : 'block';
+        });
+
+        // Handle logout button click
+        logoutButton.addEventListener('click', () => {
+            // Redirect to logout page
+            window.location.href = 'file:///C:/Users/v%20n%20ramadevi/Desktop/rtrp/rtrp.html'; // Replace with actual path
+        });
+
+        // Function to fetch data from backend API
+        function fetchData() {
+            fetch('http://localhost:3000/api/data')
+                .then(response => response.json())
+                .then(data => {
+                    sessionStorage.setItem('data', JSON.stringify(data));
+                    window.location.href = 'file:///C:/Users/v%20n%20ramadevi/Desktop/rtrp/public/index.html'; // Redirect to new page with data
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+
+        // Function to redirect to explore page
+        function redirectToExplorePage() {
+            window.location.href = 'file:///C:/Users/v%20n%20ramadevi/Desktop/rtrp/explore.html'; // Replace with actual path
+        }
+
+        // Function to redirect to help page
+        function redirectToHelpPage() {
+            window.location.href = 'file:///C:/Users/v%20n%20ramadevi/Desktop/rtrp/help.html'; // Replace with actual path
+        }
+
+	// Function to redirect to "knowabtus.html"
+	function redirectToKnowMore() {
+    	window.location.href = 'file:///C:/Users/v%20n%20ramadevi/Desktop/rtrp/knowabtus.html';
+	}
+
+
+    </script>
+</body>
+</html>

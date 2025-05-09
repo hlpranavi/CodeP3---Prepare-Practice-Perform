@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore</title>
+    <style>
+        /* Reset default styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* Prevent scrolling */
+        }
+
+        .video-background {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #bg-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .content-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+            width: 80%;
+            max-width: 800px;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .additional-data {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 1.2em;
+        }
+
+        .section-subtitle {
+            font-size: 2em;
+            margin-top: 5px;
+        }
+
+        .paragraphs {
+            font-size: 1em;
+            line-height: 1.5;
+            text-align: justify;
+        }
+    </style>
+</head>
+<body>
+    <div class="video-background">
+        <video autoplay muted loop id="bg-video">
+            <source src="53982-476396357_tiny.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="content-overlay">
+            <div class="content">
+                <div class="additional-data">
+                    <div class="section-title">Welcome to</div>
+                    <div class="section-subtitle">CodeP3 EXPLORER</div>
+                </div>
+                <div class="paragraphs">
+                    <p>Welcome to CodeP3, your ultimate coding platform designed to help you prepare, practice, and perform in coding challenges. I provide a wide range of coding questions sourced from various platforms, ensuring you get exposure to diverse problems. Whether you are a beginner or an experienced programmer, I offer questions of varying difficulty levels, from easy to hard, across numerous topics such as algorithms, data structures, arrays, strings, and dynamic programming. This structured approach ensures a gradual and comprehensive learning curve, enabling you to strengthen specific areas of your coding knowledge. I am user-friendly and particularly suitable for beginners, offering a range of easy questions to build foundational skills along with explanations and hints to guide you through the learning process. I also support your growth by providing features to track your progress, such as performance metrics, question completion status, and topic-wise progress reports. These tools help you identify your strengths and areas for improvement, making your practice sessions more effective and targeted. By using CodeP3, you can systematically enhance your coding skills and prepare for real-world challenges. Join me today and embark on a journey to become a proficient coder with CodeP3, where you can explore, learn, and excel in coding.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

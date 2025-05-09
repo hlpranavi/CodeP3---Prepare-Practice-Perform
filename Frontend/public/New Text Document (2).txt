@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeP3</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Lora', serif;
+        }
+        .header {
+            background-color: #26547C; /* Dark blue background */
+            color: white;
+            padding: 20px 0; /* Increased padding */
+            margin: 0;
+            display: flex;
+            align-items: center; /* Align items vertically */
+            justify-content: space-between; /* Space out between logo and title */
+        }
+        .header .logo-container {
+            display: flex;
+            align-items: center;
+            margin-left: 20px; /* Adjust margin to move logo horizontally */
+        }
+        .header img.logo {
+            width: 90px; /* Increased logo size */
+            height: 90px;
+        }
+        .header h1 {
+            margin: 0;
+            padding: 0;
+            font-size: 36px; /* Increased font size */
+        }
+        .subheader {
+            background-color: #80B2DD; /* Light blue background */
+            color: black;
+            text-align: center;
+            padding: 10px 0;
+            margin: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 24px; /* Increased font size */
+            font-weight: bold; /* Added font weight */
+            padding-left: 30px; /* Adjusted padding for left spacing */
+            padding-right: 30px; /* Adjusted padding for right spacing */
+        }
+        .subheader-left {
+            flex: 1;
+            text-align: left;
+        }
+        .subheader-right {
+            flex: 1;
+            text-align: right;
+        }
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* FAQ's button style - same as Explore */
+        .button-container {
+            display: flex;
+            align-items: center;
+            margin-right: 20px; /* Adjust the margin to move the container slightly to the left */
+        }
+
+        .help-button {
+            padding: 13px 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #004d6e;
+            color: #fff;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+            transition: background-color 0.3s ease;
+            margin-right: 25px; /* Space between the button and the image */
+        }
+
+        .help-button:hover {
+            background-color: #4D5E6D;
+        }
+
+        .profile-button {
+            position: relative;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .profile-button img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+        }   
+        
+        /* Dropdown menu styles */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 40px;
+            right: 0;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+            z-index: 1;
+        }
+
+        .dropdown-menu button {
+            display: block;
+            padding: 10px 20px;
+            border: none;
+            background-color: #fff;
+            color: #333;
+            text-align: left;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .dropdown-menu button:hover {
+            background-color: #f5f7f9;
+        }
+
+        .pp-image-container:hover .dropdown-menu {
+            display: block;
+        }
+
+        .content {
+            background-color: #D3EDFC; /* Light blue background */
+            padding: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        a {
+            color: blue;
+            text-decoration: underline;
+        }
+        /* Style for the unlock text */
+        #challenge-text {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold; /* Added bold font weight */
+        }
+        /* Style for the solved problems count */
+        #solved-count {
+            text-align: right;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+    <link rel="stylesheet" href="C:\Users\v n ramadevi\Desktop\rtrp\fontawesome-free-6.5.2-web\fontawesome-free-6.5.2-web\css\all.min.css">
+</head>
+<body>
+    <div class="header">
+        <div class="logo-container">
+            <img src="logo.jpg" alt="Logo" class="logo">
+        </div>
+        <div class="container">
+            <h1>CodeP3 - PREPARE PRACTICE PERFORM</h1>
+        </div>
+        <div class="button-container">
+            <button class="help-button" onclick="redirectToHelpPage()">
+                HOME
+            </button>
+            <div class="pp-image-container">
+                <button class="profile-button" id="profile-button">
+                    <img src="pp.jpg" alt="Profile Picture" />
+                </button>
+                
+                <!-- Dropdown menu -->
+                <div class="dropdown-menu" id="dropdown-menu">
+                    <button id="logout-button">Log Out</button> <!-- Updated with id for logout -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="subheader">
+        <div class="container subheader-left">
+            <p>"Let's dive into coding brilliance now!.."</p>
+        </div>
+        <div class="container subheader-right">
+            <!-- Removed Explore link -->
+        </div>
+    </div>
+    <div class="content">
+        <div class="container">
+            <p id="challenge-text"></p> <!-- Bold text will be inserted here -->
+            <div id="solved-count">Solved Problems: 0</div> <!-- Solved problems count -->
+            <table id="data-table">
+                <thead>
+                    <tr>
+                        <th>S.No</th>
+                        <th>Difficulty</th>
+                        <th>Platform</th>
+                        <th>Problem Link</th>
+                        <th>Problem Name</th>
+                        <th>Skill</th>
+                        <th>Topic</th>
+                        <th>Status</th> <!-- Added Status column -->
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <!-- Table rows will be dynamically added here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        const profileButton = document.getElementById('profile-button');
+        const dropdownMenu = document.getElementById('dropdown-menu');
+        const logoutButton = document.getElementById('logout-button'); // Added reference to logout button
+        const solvedCountElement = document.getElementById('solved-count'); // Reference to solved count element
+        let solvedCount = 0;
+
+        // Toggle dropdown menu when profile button is clicked
+        profileButton.addEventListener('click', () => {
+            const isVisible = dropdownMenu.style.display === 'block';
+            dropdownMenu.style.display = isVisible ? 'none' : 'block';
+        });
+
+        // Handle logout button click
+        logoutButton.addEventListener('click', () => {
+            // Redirect to logout page
+            window.location.href = 'file:///C:/Users/v%20n%20ramadevi/Desktop/rtrp/rtrp.html'; // Replace with actual path
+        });
+
+        async function fetchData() {
+            try {
+                const response = await fetch('http://localhost:3000/api/data');
+                if (!response.ok) {
+                    throw new Error('HTTP error! status: ' + response.status);
+                }
+                const data = await response.json();
+                displayData(data);
+                displayChallengeText(data.length);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        function displayData(data) {
+            const tableBody = document.getElementById('table-body');
+            tableBody.innerHTML = ''; // Clear previous table rows
+
+            // Restore checkbox states from localStorage
+            const checkboxStates = JSON.parse(localStorage.getItem('checkboxStates')) || {};
+
+            data.forEach((item, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${index + 1}</td>
+                    <td>${item.Difficulty}</td>
+                    <td>${item.Platform}</td>
+                    <td>${item.Problem_Link ? `<a href="${item.Problem_Link}" target="_blank">${item.Problem_Link}</a>` : 'N/A'}</td>
+                    <td>${item.Problem_name || 'N/A'}</td>
+                    <td>${item.Skill}</td>
+                    <td>${item.Topic}</td>
+                    <td><input type="checkbox" class="status-checkbox" data-index="${index}" ${checkboxStates[index] ? 'checked' : ''}></td> <!-- Checkbox for status -->
+                `;
+                tableBody.appendChild(row);
+            });
+
+            // Add event listeners to checkboxes
+            document.querySelectorAll('.status-checkbox').forEach(checkbox => {
+                checkbox.addEventListener('change', handleCheckboxChange);
+            });
+
+            // Update solved problems count based on localStorage
+            updateSolvedCount();
+        }
+
+        function displayChallengeText(count) {
+            const challengeTextElement = document.getElementById('challenge-text');
+            challengeTextElement.textContent = `Unlock the trove of coding challenges : ${count} ahead!`;
+        }
+
+        function handleCheckboxChange(event) {
+            const checkbox = event.target;
+            const rowIndex = checkbox.dataset.index;
+
+            // Update local storage with checkbox state
+            const checkboxStates = JSON.parse(localStorage.getItem('checkboxStates')) || {};
+            checkboxStates[rowIndex] = checkbox.checked;
+            localStorage.setItem('checkboxStates', JSON.stringify(checkboxStates));
+
+            // Update solved problems count
+            updateSolvedCount();
+        }
+
+        function updateSolvedCount() {
+            // Get checkbox states from localStorage
+            const checkboxStates = JSON.parse(localStorage.getItem('checkboxStates')) || {};
+
+            // Count solved problems
+            solvedCount = Object.values(checkboxStates).filter(checked => checked).length;
+            solvedCountElement.textContent = `Solved Problems: ${solvedCount}`;
+        }
+
+        function redirectToHelpPage() {
+            window.location.href = 'file:///C:/Users/v%20n%20ramadevi/Desktop/rtrp/myfile.html'; // Replace with actual path
+        }
+
+        // Fetch and display data when the page loads
+        fetchData();
+    </script>
+</body>
+</html>
